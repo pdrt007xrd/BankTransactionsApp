@@ -43,10 +43,13 @@ namespace BankTransactions.Controllers
             return View(transaction);
         }
 
-        // GET: Transaction/Create
-        public IActionResult AddOrEdit()
+        // GET: Transaction/AddOrEdit
+        public IActionResult AddOrEdit(int id=0)
         {
-            return View(new Transaction());
+            if(id ==0)
+                return View(new Transaction());
+            else
+                return View(_context.Transactions.Find(id));  
         }
 
         // POST: Transaction/Create
@@ -65,22 +68,7 @@ namespace BankTransactions.Controllers
             }
             return View(transaction);
         }
-
-        // GET: Transaction/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var transaction = await _context.Transactions.FindAsync(id);
-            if (transaction == null)
-            {
-                return NotFound();
-            }
-            return View(transaction);
-        }
+      
 
         // POST: Transaction/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.

@@ -26,6 +26,7 @@ namespace BankTransactions.Models
         [MaxLength(11, ErrorMessage ="Maximun 11 Characters Only.")]
         public string SWIFTCODE { get; set; }
         public int Amount { get; set; }
+        [DisplayFormat(DataFormatString ="{0:mm-dd-yy}")]
         public DateTime Date { get; set; }
     }
 }
